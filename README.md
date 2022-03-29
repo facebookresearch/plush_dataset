@@ -40,7 +40,7 @@ verts_fixed = verts_object[mask["fixed"]]
 ```
 where `vertices` is a `100.000 x 3` float32 numpy array, containing the 3D vertex positions. The vertices are in temporal correspondence across the files. 
 
-We remove undesired points by selecting only the vertex indices of the object in the `objectInd` field of `mask.pt`. We also store the indices of the subset of the cleaned point cloud that were attached to the stings or taped to the ground in the `fixed` field.
+We remove undesired points by selecting only the vertex indices of the object in the `objectInd` field of `mask.pt`. We also store the indices of the subset of the cleaned point cloud that were attached to the strings or taped to the ground in the `fixed` field.
 
 The `rgbs.npy` file can be loaded with `rgb = np.load(os.path.join(plush_folder, "reconstruction", "rgbs.npy"))`. It is a `100.000 x 3` float32 numpy array, containing the RGB color (in [0,1]) of each vertex. 
 
@@ -67,10 +67,10 @@ tvecs = camInfo[frameIndex]["tvecs"]
 rvecs = camInfo[frameIndex]["rvecs"]
 pos = torch.matmul(torch.tensor(rvecs), torch.FloatTensor([0,105,0])) + torch.FloatTensor(tvecs)
 dir = torch.matmul(torch.tensor(rves), torch.FloatTensor([0,0,-1]))
-pos[:,1:2] = -pos[:,1:2] 
-dir[:,1:2] = -dir[:,1,2]
+pos[:,1:3] = -pos[:,1:3] 
+dir[:,1:3] = -dir[:,1,3]
 ```
-These transformations are necessary because the airstream source is located 10.5 cm above the marker center and ejects air in the `(0,0,-1)` direction. The final two lines rotate the position and direction by 90 degrees counterclockwise to match the reconstruction.
+These transformations are necessary because the airstream source is located 10.5 cm above the marker center and ejects air in the `(0,0,-1)` direction. The final two lines flipped the position and direction to match the reconstruction.
 
 ## License
 
