@@ -11,6 +11,12 @@ For each of a dozen plush toys, the dataset contains a scene with:
 
 ![Teaser figure](misc/teaser.png)
 
+## Download The Plush Dataset
+The dataset is managed using the Git Large File Storage system. To download the dataset, please do the following steps:
+1. Install git LFS from : https://git-lfs.github.com/
+2. Run `git lfs install`
+3. `git clone https://github.com/facebookresearch/plush_dataset.git`
+
 ## Folder Structure
 
 The repository contains one subfolder per object. Each of the object folders contains three subfolders: `capture`, `reconstruction`, and `simulation`.
